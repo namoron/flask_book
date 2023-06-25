@@ -1,5 +1,16 @@
 from email_validator import validate_email,EmailNotValidError
-from flask import Flask,render_template,url_for,current_app,g,request,redirect,flash
+from flask import (
+    Flask,
+    current_app,
+    flash,
+    g,
+    redirect,
+    render_template,
+    url_for,
+    request,
+    make_response,
+    session,
+    )
 import logging
 from flask_debugtoolbar import DebugToolbarExtension
 
@@ -49,6 +60,7 @@ with app.test_request_context("/users?updated=true"):
 
 @app.route("/contact")
 def contact():
+    #レスポンスオブジェクトを取得する．
     return render_template("contact.html")
 
 @app.route("/contact/complete",methods=["GET","POST"])
